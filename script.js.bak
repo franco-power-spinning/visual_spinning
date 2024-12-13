@@ -1,0 +1,233 @@
+
+  const eastModel = [
+    { time: "00:00:00" },
+    { bpm: 40 },
+    { time: "00:02:27" },
+    { bpm: 60 },
+    { time: "00:04:56" },
+    { bpm: 65 },
+    { time: "00:09:42" },
+    { bpm: 75 },
+    { time: "00:19:01" },
+    { bpm: 40 },
+	{ time: "00:22:18" },
+    { bpm: 65 },
+	{ time: "00:25:35" },
+    { bpm: 55 },
+	{ time: "00:29:05" },
+    { bpm: 75 },
+	{ time: "00:37:39" },
+    { bpm: 40 },
+	{ time: "00:40:53" },
+    { bpm: 46 },
+	{ time: "00:44:12"  },
+    { bpm: 10 },
+    { time: "00:48:02" },
+    { bpm: 75 },
+    { time: "00:56:40" },
+    { bpm: 30 },
+    { time: "01:00:11" },
+    { bpm: 60 },
+    { time: "01:15:40" },
+    { bpm: 10 }
+    
+  ];
+
+// Funzione per convertire il modello semplificato nel modello strutturato
+function convertToBpmData(eastModel) {
+  const bpmDataRaw = [];
+  let lastTime = null;
+  console.log('easymodel:' + eastModel)
+  for (const item of eastModel) {
+    console.log('item: ' + item)
+    if (item.time !== undefined) {
+      // Se è un elemento "time", aggiornalo come ultimo tempo
+      lastTime = item.time;
+    } else if (item.bpm !== undefined && lastTime !== null) {
+      // Se è un elemento "bpm", abbinalo all'ultimo tempo
+      bpmDataRaw.push({ time: lastTime, bpm: item.bpm });
+    }
+  }
+  console.log('bpmDataRaw: '+ bpmDataRaw)
+  return bpmDataRaw;
+}
+  // Conversione
+  const bpmDataRaw = convertToBpmData(eastModel);
+
+  // Risultato
+  console.log(bpmDataRaw);
+
+  function hhmmssToSeconds(hhmmss) {
+  const [hours, minutes, seconds] = hhmmss.split(':').map(Number);
+  return hours * 3600 + minutes * 60 + seconds;
+}
+
+let endTime = 0;
+// Conversione automatica e calcolo di `endTime`
+const bpmData = bpmDataRaw.map(data => {
+  const timeInSeconds = hhmmssToSeconds(data.time);
+  if (timeInSeconds > endTime) {
+    endTime = timeInSeconds; // Aggiorna endTime se trovi un tempo maggiore
+  }
+  return {
+    time: timeInSeconds,
+    bpm: data.bpm
+  };
+});
+
+// Verifica del risultato
+console.log("bpmData:", bpmData);
+console.log("endTime:", endTime);
+
+// Interpolazione per ottenere i valori per ogni secondo
+const interpolatedData = [];
+for (let i = 0; i <= endTime; i++) {
+  // Trova il segmento corrispondente
+  const currentSegment = bpmData.find((data, index) =>
+          i >= data.time && (index === bpmData.length - 1 || i < bpmData[index
+          + 1].time)
+  );
+
+  // Aggiungi il punto interpolato
+  interpolatedData.push({time: i, bpm: currentSegment.bpm});
+}
+
+// Funzione per determinare il colore in base ai valori di bpm
+function getBpmColor(bpm) {
+  if (bpm >= 5 && bpm <= 15) {
+    return 'rgba(180, 255, 255, 1)';
+  } else if (bpm > 15 && bpm <= 33) {
+    return 'rgba(0, 255, 0, 1)'; // Verde
+  } else if (bpm > 33 && bpm <= 66) {
+    return 'rgba(255, 255, 0, 1)'; // Giallo
+  } else if (bpm > 66 && bpm <= 100) {
+    return 'rgba(255, 50, 60, 1)'; // Rosso
+  }
+  return 'rgba(0, 255, 255, 1)'; // Colore di default
+}
+
+// Creazione del grafico
+const ctx = document.getElementById('bpmChart').getContext('2d');
+
+const audioPlayerContainer = document.getElementById('audioPlayerContainer');
+const audioPlayer = document.getElementById('audioPlayer');
+const countdownElement = document.getElementById('countdown'); // Riferimento al div del countdown
+
+// Configurazione del grafico
+Chart.register(window['chartjs-plugin-annotation']);
+
+const bpmChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: interpolatedData.map(d => d.time), // Ascisse: tempo in secondi (da 0 a endTime)
+    datasets: [
+      {
+        label: 'BPM',
+        data: interpolatedData.map(d => d.bpm),
+        borderColor: interpolatedData.map(d => getBpmColor(d.bpm)), // Applica il colore in base al BPM
+        borderWidth: 2,
+        fill: false,
+      },
+    ],
+  },
+  options: {
+    responsive: true,
+    animation: false, // Disattiva animazioni per aggiornamenti fluidi
+    plugins: {
+      legend: {
+        display: false, // Nasconde la legenda
+      },
+      annotation: {
+        annotations: [
+          {
+            type: 'line',
+            id: 'currentTimeLine',
+            mode: 'vertical',
+            scaleID: 'x',
+            value: 0,
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 2,
+            label: {
+              enabled: true,
+              content: 'Tempo Attuale',
+              position: 'start',
+            },
+          },
+        ],
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: false,
+          color: 'black', // Colore del titolo dell'asse X
+        },
+        min: 0,
+        max: endTime, // Usa la costante totalDuration
+        grid: {
+          color: 'rgba(255, 255, 255, 0.2)', // Colore delle linee della griglia
+        },
+        ticks: {
+          color: 'black', // Colore dei tick sull'asse X
+        },
+      },
+      y: {
+        title: {
+          display: false,
+          color: 'white', // Colore del titolo dell'asse Y
+        },
+        suggestedMin: 0,
+        grid: {
+          color: 'rgba(255, 255, 255, 0.2)', // Colore delle linee della griglia
+        },
+        ticks: {
+          display: false, // Nascondi i valori sull'asse Y
+        },
+      },
+    },
+  },
+});
+
+// Sincronizzazione con la traccia audio
+// const audioPlayer = document.getElementById('audioPlayer');
+audioPlayer.addEventListener('timeupdate', () => {
+  const currentTime = audioPlayer.currentTime; // Tempo attuale in secondi
+
+  // Aggiorna la posizione della linea verticale
+  bpmChart.options.plugins.annotation.annotations[0].value = currentTime;
+  bpmChart.update(); // Aggiorna il grafico
+
+  // Calcolare il tempo rimanente
+  const remainingTime = Math.max(endTime - currentTime, 0); // endTime è la durata totale in secondi (5 minuti)
+  // Calcola ore, minuti e secondi
+  const hours = Math.floor(remainingTime / 3600); // Ore
+  const minutes = Math.floor((remainingTime % 3600) / 60); // Minuti
+  const seconds = Math.floor(remainingTime % 60); // Secondi
+
+  // Mostra il countdown nel div con formato hh:mm:ss
+  countdownElement.textContent = `${hours < 10 ? '0' : ''}${hours}:${minutes
+  < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+});
+
+// Variabile per tracciare la posizione del mouse
+let isMouseAtBottom = false;
+
+// Funzione per rilevare il movimento del mouse
+document.addEventListener('mousemove', (event) => {
+  const mouseY = event.clientY; // Posizione Y del mouse
+
+  // Se il mouse è vicino al fondo della finestra (es. 50px dal fondo)
+  if (window.innerHeight - mouseY < 50) {
+    if (!isMouseAtBottom) {
+      isMouseAtBottom = true;
+      audioPlayerContainer.classList.add('show'); // Mostra il player
+    }
+  } else {
+    if (isMouseAtBottom) {
+      isMouseAtBottom = false;
+      audioPlayerContainer.classList.remove('show'); // Nascondi il player
+    }
+  }
+
+});

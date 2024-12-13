@@ -1,0 +1,104 @@
+/* Resetta i margini e i padding di default */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Contenitore principale che occupa tutta la finestra */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Occupare l'intera altezza della finestra */
+}
+
+.parent-container {
+  display: flex;
+  flex-direction: column; /* Disposizione verticale */
+  height: 100vh; /* L'intera altezza della finestra */
+}
+
+
+.chart-container-total {
+  display: flex;
+  flex-direction: column; /* Disposizione verticale */
+  height: 10vh; /* Altezza totale della finestra */
+  background: black;
+}
+
+.chart-container {
+  display: flex;
+  height: 90vh;
+  background: black; /* Sfondo nero per i grafici */
+}
+
+.chart-top {
+  flex: 2; /* Occupa il 20% dell'altezza totale */
+}
+
+.chart-bottom {
+  flex: 8; /* Occupa l'80% dell'altezza totale */
+}
+
+.chart-container canvas {
+  width: 100%; /* Adatta il canvas alla larghezza del contenitore */
+  height: 100%; /* Adatta il canvas all'altezza del contenitore */
+}
+
+/* Canvas del grafico per occupare tutto lo spazio disponibile */
+canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* Player audio posizionato in fondo e con larghezza completa */
+audio {
+  width: 100%;
+}
+
+#bpmChart {
+  background-color: black; /* Sfondo nero per il grafico */
+}
+
+#audioPlayerContainer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  transition: transform 0.3s ease;
+  transform: translateY(100%); /* Nasconde il player */
+}
+
+#audioPlayerContainer.show {
+  transform: translateY(0); /* Mostra il player */
+}
+
+#controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px;
+  font-size: 20px; /* Dimensione delle icone */
+  cursor: pointer;
+  border: none;
+  background-color: transparent; /* Sfondo trasparente */
+  color: white;
+  transition: color 0.3s ease;
+}
+
+button:hover {
+  color: #555; /* Colore delle icone al passaggio del mouse */
+}
+
+span {
+  font-size: 18px;
+  color: #333;
+}
+

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grafico BPM con avanzamento</title>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Plugin Annotation -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+
+  <div class="parent-container">
+    <div class="chart-container-total ">
+      <canvas id="totalbpmChart"></canvas>
+    </div>
+    <div class="chart-container">
+      <canvas id="bpmChart"></canvas>
+    </div>
+    </div>
+  </div>
+
+
+  <div id="audioPlayerContainer">
+    <div id="controls">
+      <button id="prevTrackButton" aria-label="Traccia Precedente">
+        <i class="fas fa-backward"></i>
+      </button>
+      <span>|</span>
+      <button id="nextTrackButton" aria-label="Traccia Successiva">
+        <i class="fas fa-forward"></i>
+      </button>
+    </div>
+    <audio id="audioPlayer" controls>
+      <source src="traccia.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <!-- Div per il countdown -->
+  <div id="countdown" style="background: red; position: absolute; bottom: 10px; left: 10px; color: white; font-size: 20px; font-family: Arial, sans-serif;"></div>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
