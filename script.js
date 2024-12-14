@@ -179,6 +179,11 @@ const model4 = [
   {bpm: 91},
   {time: "00:57:23"}
 ];
+const end = [
+  {time: "00:00:00"},
+  {bpm: 0},
+  {time: "00:03:04"}
+];
 const modelList = [
   model0,
   model1, // Prima tappa
@@ -199,7 +204,7 @@ const audioTracks = [
   'tracks/traccia3.mp3',
   'tracks/rest.mp3',
   'tracks/traccia4.mp3',
-  'tracks/rest.mp3'
+  'tracks/end.mp3'
 ];
 const images = [
   'images/rest.jpg',
@@ -210,7 +215,7 @@ const images = [
   'images/image3.png',
   'images/rest.jpg',
   'images/image4.png',
-  'images/rest.jpg',
+  'images/end.png',
 ];
 Chart.register(window['chartjs-plugin-annotation']);
 Chart.register({
