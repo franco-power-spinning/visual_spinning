@@ -144,8 +144,40 @@ const model3 = [
 ];
 const model4 = [
   {time: "00:00:00"},
-  {bpm: 10},
-  {time: "01:00:36"}
+  {bpm: 89},
+  {time: "00:00:012"},
+  {bpm: 90},
+  {time: "00:03:08"},
+  {bpm: 89},
+  {time: "00:07:08"},
+  {bpm: 91},
+  {time: "00:12:45"},
+  {bpm: 89},
+  {time: "00:15:42"},
+  {bpm: 90},
+  {time: "00:22:05"},
+  {bpm: 89},
+  {time: "00:25:09"},
+  {bpm: 96},
+  {time: "00:27:20"},
+  {bpm: 92},
+  {time: "00:31:01"},
+  {bpm: 94},
+  {time: "00:36:42"},
+  {bpm: 96},
+  {time: "00:41:10"},
+  {bpm: 92},
+  {time: "00:41:10"},
+  {bpm: 89},
+  {time: "00:44:28"},
+  {bpm: 94},
+  {time: "00:50:27"},
+  {bpm: 94},
+  {time: "00:50:27"},
+  {bpm: 96},
+  {time: "00:54:00"},
+  {bpm: 91},
+  {time: "00:57:23"}
 ];
 const modelList = [
   model0,
@@ -166,7 +198,7 @@ const audioTracks = [
   'tracks/laGrandeOnda.mp3',
   'tracks/traccia3.mp3',
   'tracks/rest.mp3',
-  'tracks/traccia3.mp3',
+  'tracks/traccia4.mp3',
   'tracks/rest.mp3'
 ];
 const images = [
