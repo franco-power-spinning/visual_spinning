@@ -102,15 +102,45 @@ const model2 = [
 
   {time: "00:57:10"}
 ];
-const rest3 = [
+const rest23 = [
   {time: "00:00:00"},
   {bpm: 0},
   {time: "00:03:29"},
 ];
 const model3 = [
   {time: "00:00:00"},
-  {bpm: 10},
-  {time: "01:00:36"}
+  {bpm: 88},
+  {time: "00:02:55"},
+  {bpm: 93},
+  {time: "00:06:10"},
+  {bpm: 89},
+  {time: "00:14:17"},
+  {bpm: 90},
+  {time: "00:18:22"},
+  {bpm: 88},
+  {time: "00:21:54"},
+  {bpm: 87},
+  {time: "00:25:54"},
+  {bpm: 91},
+  {time: "00:29:26"},
+  {bpm: 94},
+  {time: "00:33:54"},
+  {bpm: 92},
+  {time: "00:37:09"},
+  {bpm: 93},
+  {time: "00:40:43"},
+  {bpm: 94},
+  {time: "00:44:24"},
+  {bpm: 95},
+  {time: "00:48:06"},
+  {bpm: 96},
+  {time: "00:50:53"},
+  {bpm: 91},
+  {time: "00:50:53"},
+  {bpm: 92},
+  {time: "00:55:29"},
+  {bpm: 96},
+  {time: "00:59:25"}
 ];
 const model4 = [
   {time: "00:00:00"},
@@ -119,11 +149,11 @@ const model4 = [
 ];
 const modelList = [
   model0,
-  model1, // Primo modello
+  model1, // Prima tappa
   rest01,
-  model2, // Secondo modello
-  model0,
-  model3,
+  model2, // Seconda tappa
+  rest23,
+  model3,// Seconda tappa
   model0,
   model4,
   model0,
