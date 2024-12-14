@@ -142,6 +142,11 @@ const model3 = [
   {bpm: 96},
   {time: "00:59:25"}
 ];
+const nonVale = [
+  {time: "00:00:00"},
+  {bpm: 0},
+  {time: "00:02:35"}
+];
 const model4 = [
   {time: "00:00:00"},
   {bpm: 89},
@@ -191,9 +196,9 @@ const modelList = [
   model2, // Seconda tappa
   rest23,
   model3,// Seconda tappa
-  model0,
+  nonVale,
   model4,
-  model0,
+  end,
 ];
 const audioTracks = [
     'tracks/che_idea.mp3',
@@ -202,7 +207,7 @@ const audioTracks = [
   'tracks/traccia2.mp3',
   'tracks/laGrandeOnda.mp3',
   'tracks/traccia3.mp3',
-  'tracks/rest.mp3',
+  'tracks/nonVale.mp3',
   'tracks/traccia4.mp3',
   'tracks/end.mp3'
 ];
