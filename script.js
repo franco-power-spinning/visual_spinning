@@ -1,12 +1,49 @@
 const model0 = [
   {time: "00:00:00"},
   {bpm: 0},
-  {time: "00:05:23"},
+  {time: "00:03:46"},
 ];
 const model1 = [
   {time: "00:00:00"},
-  {bpm: 10},
-  {time: "01:00:00"},
+  {bpm: 94},
+  {time: "00:01:10"},
+  {bpm: 96},
+  {time: "00:03:10"},
+  {bpm: 91},
+  {time: "00:06:30"},
+  {bpm: 92},
+  {time: "00:10:40"},
+  {bpm: 95},
+  {time: "00:11:05"},
+  {bpm: 96},
+  {time: "00:14:02"},
+  {bpm: 92},
+  {time: "00:17:20"},
+  {bpm: 91},
+  {time: "00:20:09"},
+  {bpm: 94},
+  {time: "00:22:28"},
+  {bpm: 93},
+  {time: "00:25:20"},
+  {bpm: 92},
+  {time: "00:29:55"},
+  {bpm: 94},
+  {time: "00:32:35"},
+  {bpm: 91},
+  {time: "00:36:22"},
+  {bpm: 95},
+  {time: "00:41:45"},
+  {bpm: 96},
+  {time: "00:48:13"},
+  {bpm: 97},
+  {time: "00:52:10"},
+  {bpm: 99},
+  {time: "00:55:59"},
+];
+const rest01 = [
+  {time: "00:00:00"},
+  {bpm: 0},
+  {time: "00:05:23"},
 ];
 const model2 = [
   {time: "00:00:00"},
@@ -65,6 +102,11 @@ const model2 = [
 
   {time: "00:57:10"}
 ];
+const rest3 = [
+  {time: "00:00:00"},
+  {bpm: 0},
+  {time: "00:03:29"},
+];
 const model3 = [
   {time: "00:00:00"},
   {bpm: 10},
@@ -78,7 +120,7 @@ const model4 = [
 const modelList = [
   model0,
   model1, // Primo modello
-  model0,
+  rest01,
   model2, // Secondo modello
   model0,
   model3,
@@ -87,11 +129,11 @@ const modelList = [
   model0,
 ];
 const audioTracks = [
-  'tracks/rest.mp3',
+    'tracks/che_idea.mp3',
   'tracks/traccia1.mp3',
   'tracks/rest.mp3',
   'tracks/traccia2.mp3',
-  'tracks/rest.mp3',
+  'tracks/laGrandeOnda.mp3',
   'tracks/traccia3.mp3',
   'tracks/rest.mp3',
   'tracks/traccia3.mp3',
