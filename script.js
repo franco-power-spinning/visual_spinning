@@ -34,8 +34,8 @@ const model1 = [
   {bpm: 95},
   {time: "00:41:45"},
   {bpm: 96},
-  {time: "00:48:13"},
   {bpm: 97},
+  {time: "00:48:13"},
   {time: "00:52:10"},
   {bpm: 99},
   {time: "00:55:59"},
@@ -240,6 +240,9 @@ Chart.register({
     }
   },
 });
+// Funzione per alternare play/pause
+
+
 
 const ctxTotal = document.getElementById('totalbpmChart').getContext('2d');
 const ctx = document.getElementById('bpmChart').getContext('2d');
@@ -250,6 +253,14 @@ const nextTrackButton = document.getElementById('nextTrackButton');
 const countdownElement = document.getElementById('countdown'); // Riferimento al div del countdown
 const currentTimeLineColor = 'rgba(15, 9, 200, 1)'
 let endTime = 0;
+
+function togglePlayPause() {
+  if (audioPlayer.paused) {
+    audioPlayer.play();
+  } else {
+    audioPlayer.pause();
+  }
+}
 
 function addTime(time1, timeToAdd) {
   // Funzione per separare ore, minuti e secondi
@@ -752,5 +763,12 @@ nextTrackButton.addEventListener('click', () => {
     });
   } else {
     alert('Hai raggiunto l\'ultima traccia!');
+  }
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.code === 'Space') {
+    event.preventDefault(); // Previene lo scrolling con la barra spaziatrice
+    togglePlayPause();
   }
 });
